@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: llm-tracker-backend
+    runtime: java
+    buildCommand: ./mvnw clean package || mvn clean package
+    startCommand: java -jar target/*.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
+    plan: free
+    autoDeploy: true
+    region: oregon
+    branch: master
+    healthCheckPath: /actuator/health
+    repo: cubollikushtrim-tech/llm-tracker-backend
